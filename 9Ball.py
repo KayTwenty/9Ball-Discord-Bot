@@ -108,10 +108,13 @@ async def _9ball(ctx, *, question):
 async def _9help(ctx):
     embed=discord.Embed(title="9Ball Help Commands", color=0x680af5)
     embed.set_author(name="Requested by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.add_field(name="/9ball *Your Question*", value="9Ball answers your desired question.", inline=True)
-    embed.add_field(name="/9clear 5, /c", value="9Ball deletes server messages by a selected number.", inline=True)
+    embed.add_field(name="/9ball *Your Question*", value="9Ball answers your desired question.", inline=False)
+    embed.add_field(name="/9clear 5, /c", value="9Ball deletes server messages by a selected number.", inline=False)
+    embed.add_field(name="/cookie @user", value="Gives cookie to the selected user.", inline=False)
+    embed.add_field(name="/bonk @user", value="9Ball bonks the selected user.", inline=False)
+    embed.add_field(name="/hug @user", value="Gives a hug to the selected user.", inline=False)
     embed.add_field(name="/9stats", value="9Ball lists the stats.", inline=False)
-    embed.add_field(name="/9about", value="The about page for 9Ball.", inline=True)
+    embed.add_field(name="/9about", value="The about page for 9Ball.", inline=False)
     await ctx.send(embed=embed)
 
 @bot.command(aliases=['9about', '9About']) #The about page for 9Ball
@@ -144,6 +147,26 @@ async def _9clear(ctx, amount: int):
         embed = discord.Embed(title="Error: Permission Denied.", description="Your role must need manage messages to be enabled.", color=0xff0000)
         await ctx.send(embed=embed, delete_after=8)
 
+@bot.command(pass_context=True)
+async def cookie(ctx, member: discord.Member):
+    """Give a cookie to someone."""
+    embed = discord.Embed(title="This person has gave you a cookie!", description="**{1}** gave a cookie to **{0}**! :cookie:".format(member.name, ctx.message.author.name), color=0x680af5)
+    await ctx.send(embed=embed)
+
+@bot.command(pass_context=True)
+async def bonk(ctx, member: discord.Member):
+    """Shoot someone."""
+    embed = discord.Embed(title="**Bonk!**", description="**{1}** Bonked **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
+    embed.set_image(url="https://i.imgur.com/t1a9akh.gif")
+    await ctx.send(embed=embed)
+
+@bot.command(pass_context=True)
+async def hug(ctx, member: discord.Member):
+    """Hug someone."""
+    embed = discord.Embed(title="Sending...", description="**{1}** hugs **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
+    embed.set_image(url="https://media1.tenor.com/images/29a4aef07fde6e590aeaa3381324bbd1/tenor.gif?itemid=18630098")
+    await ctx.send(embed=embed)
+
 @bot.event #Erorr ignore for CommandNotFound
 async def on_command_error(ctx, error):
     if isinstance(error, CommandNotFound):
@@ -154,9 +177,5 @@ async def on_command_error(ctx, error):
 async def on_command_error(ctx, error):
     if isinstance(error, MissingPermissions):
         raise error
-
-
-
-
 
 bot.run(TOKEN)
