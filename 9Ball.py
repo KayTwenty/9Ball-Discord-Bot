@@ -98,7 +98,7 @@ async def _9ball(ctx, *, question):
                 "Oh hecc naw!",
                 "Definitely."]
 
-    colors = [0x680af5,0x2E10ED,0x8CF9C1,0xF88000,0xFCFF00,0xed129f,0xed3212,0x1ACFE7,0x0FD150,0xFE2D00,]
+    colors = [0x680af5,0x2E10ED,0x8CF9C1,0xF88000,0xFCFF00,0xed129f,0xed3212,0x1ACFE7,0x0FD150,0xFE2D00]
     time = datetime.datetime.utcnow()
     embed=discord.Embed(title="The official 9Ball has Spoken.", color=random.choice(colors))
     embed.set_author(name="Asked by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -117,8 +117,12 @@ async def _9help(ctx):
     embed.add_field(name="/cookie @user", value="Gives cookie to the selected user.", inline=False)
     embed.add_field(name="/bonk @user", value="9Ball bonks the selected user.", inline=False)
     embed.add_field(name="/hug @user", value="Gives a hug to the selected user.", inline=False)
+    embed.add_field(name="/kiss @user", value="Kisses user (Covid free).", inline=False)
+    embed.add_field(name="/fistbump @user", value="fistbump user.", inline=False)
+    embed.add_field(name="/sex @user", value="Oh yeah bb!!.", inline=False)
     embed.add_field(name="/9stats", value="9Ball lists the stats.", inline=False)
     embed.add_field(name="/9about", value="The about page for 9Ball.", inline=False)
+
     await ctx.send(embed=embed)
 
 @bot.command(aliases=['9about', '9About']) #The about page for 9Ball
@@ -153,7 +157,6 @@ async def _9clear(ctx, amount: int):
 
 @bot.command(pass_context=True) #Cookie Command
 async def cookie(ctx, member: discord.Member):
-    """Give a cookie to someone."""
     embed = discord.Embed(title="This person has gave you a cookie!", description="**{1}** gave a cookie to **{0}**! :cookie:".format(member.name, ctx.message.author.name), color=0x680af5)
     embed.set_author(name="Cookie sent by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
     embed.set_image(url="https://media1.tenor.com/images/45fe45f75ec523c2abf4e75ca2ac2fe2/tenor.gif?itemid=11797931")
@@ -178,6 +181,33 @@ async def hug(ctx, member: discord.Member):
     embed.set_author(name="Hugged by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
     embed.set_image(url="https://media1.tenor.com/images/29a4aef07fde6e590aeaa3381324bbd1/tenor.gif?itemid=18630098")
     embed.set_footer(text="Command: /hug @user")
+    await ctx.send(embed=embed)
+    await ctx.message.delete()
+
+@bot.command(pass_context=True) #Kiss Command
+async def kiss(ctx, member: discord.Member):
+    embed = discord.Embed(title="*This person gave you a suprise!*", description="**{1}** kissed **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
+    embed.set_author(name="Kissed by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    embed.set_image(url="https://media1.tenor.com/images/4700f51c48d41104e541459743db42ae/tenor.gif?itemid=17947049")
+    embed.set_footer(text="Command: /kiss @user | (Covid Free)")
+    await ctx.send(embed=embed)
+    await ctx.message.delete()
+
+@bot.command(pass_context=True, aliases=['fb', 'bump']) #Fistbump Command
+async def fistbump(ctx, member: discord.Member):
+    embed = discord.Embed(title="This person gave you a fistbump ;)", description="**{1}** fistbumped **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
+    embed.set_author(name="Fistbumped by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    embed.set_image(url="https://media2.giphy.com/media/l0HlL6XHioKD5Gsgg/giphy.gif?cid=ecf05e473oo7yozme81o170s0i9tjwxdb7pq69ba46acewt0&rid=giphy.gif")
+    embed.set_footer(text="Command: /fistbump @user | /fb @user")
+    await ctx.send(embed=embed)
+    await ctx.message.delete()
+
+@bot.command(pass_context=True, aliases=['frick', 'fuck']) #Fistbump Command
+async def sex(ctx, member: discord.Member):
+    embed = discord.Embed(title="This person had sex with you ;)", description="**{1}** fucked **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
+    embed.set_author(name="Fucked by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    embed.set_image(url="https://media1.tenor.com/images/fa98b23ca1dba1925da62f834f27153f/tenor.gif?itemid=19355212")
+    embed.set_footer(text="Command: /frick @user | /fuck @user")
     await ctx.send(embed=embed)
     await ctx.message.delete()
 
