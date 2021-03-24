@@ -120,6 +120,7 @@ async def _9help(ctx):
     embed.add_field(name="/kiss @user", value="Kisses user (Covid free).", inline=False)
     embed.add_field(name="/fistbump @user", value="fistbump user.", inline=False)
     embed.add_field(name="/sex @user", value="Oh yeah bb!!.", inline=False)
+    embed.add_field(name="/finger @user", value="Oh yes!!.", inline=False)
     embed.add_field(name="/9stats", value="9Ball lists the stats.", inline=False)
     embed.add_field(name="/9about", value="The about page for 9Ball.", inline=False)
 
@@ -202,7 +203,7 @@ async def fistbump(ctx, member: discord.Member):
     await ctx.send(embed=embed)
     await ctx.message.delete()
 
-@bot.command(pass_context=True, aliases=['frick', 'fuck']) #Fistbump Command
+@bot.command(pass_context=True, aliases=['frick', 'fuck']) #Ok Command
 async def sex(ctx, member: discord.Member):
     embed = discord.Embed(title="This person had sex with you ;)", description="**{1}** fucked **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
     embed.set_author(name="Fucked by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -211,12 +212,21 @@ async def sex(ctx, member: discord.Member):
     await ctx.send(embed=embed)
     await ctx.message.delete()
 
+@bot.command(pass_context=True, aliases=['fin', 'finge']) #Ok Command
+async def finger(ctx, member: discord.Member):
+    embed = discord.Embed(title="This person had fingered you ;)", description="**{1}** fingered **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
+    embed.set_author(name="Fingered by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    embed.set_image(url="https://media1.tenor.com/images/36dff1e9341831727baaac83a394e327/tenor.gif?itemid=19804695")
+    embed.set_footer(text="Command: /finger @user | /fin @user")
+    await ctx.send(embed=embed)
+    await ctx.message.delete()
+
 @bot.command(aliases=['quit', 'stop', 'exit']) #Shutdown command for Nineball
 async def shutdown(ctx):
     await ctx.send("9Ball is shutting down. Please wait...", delete_after=10)
     currentDT = self.mySupport.getTime()
     print(f"[{currentDT}] 9Ball is shutting down...")
-    quit()
+    await logout()
 
 @bot.event #Error ignore for MissingPermissions
 async def on_command_error(ctx, error):
