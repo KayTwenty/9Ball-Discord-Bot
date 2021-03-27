@@ -126,6 +126,14 @@ async def _9help(ctx):
 
     await ctx.send(embed=embed)
 
+@bot.command(aliases=['18help', '8Help']) #The 9Ball help commands...
+async def _18help(ctx):
+    embed=discord.Embed(title="9Ball 18+ Help Commands", color=0xF50E0A)
+    embed.set_author(name="Requested by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    embed.add_field(name="/sex @user", value="Oh yeah bb!!.", inline=False)
+    embed.add_field(name="/finger @user", value="Oh yes!!.", inline=False)
+    await ctx.send(embed=embed)
+
 @bot.command(aliases=['9about', '9About']) #The about page for 9Ball
 async def _9about(ctx):
     embed=discord.Embed(title="Developed By K-20", description="Written in Python Rewrite. It's not an 8Ball but, It's a 9Ball!", color=0x680af5)
@@ -162,6 +170,15 @@ async def cookie(ctx, member: discord.Member):
     embed.set_author(name="Cookie sent by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
     embed.set_image(url="https://media1.tenor.com/images/45fe45f75ec523c2abf4e75ca2ac2fe2/tenor.gif?itemid=11797931")
     embed.set_footer(text="Command: /cookie @user")
+    await ctx.send(embed=embed)
+    await ctx.message.delete()
+
+@bot.command(pass_context=True) #Cookies Command
+async def cookies(ctx, member: discord.Member):
+    embed = discord.Embed(title="This person has gave you a bunch of cookies", description="**{1}** gave cookies to **{0}**! :cookie:".format(member.name, ctx.message.author.name), color=0x680af5)
+    embed.set_author(name="Cookies sent by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+    embed.set_image(url="https://media1.tenor.com/images/30c8ce96272fe73f58841164a179f6d1/tenor.gif?itemid=17729544")
+    embed.set_footer(text="Command: /cookies @user")
     await ctx.send(embed=embed)
     await ctx.message.delete()
 
