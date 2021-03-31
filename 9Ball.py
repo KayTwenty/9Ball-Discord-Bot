@@ -1,253 +1,96 @@
 import discord
-import random
 import datetime
 import time
 import os
 import platform
 import sys
-from random import choice
 from discord.ext import commands, tasks
 from discord.ext.commands import MissingPermissions
 from discord.ext.commands import CommandNotFound
 from asyncio import sleep
+from config import *
 
-TOKEN = "NzUwNzg5MjQ3ODkxNTM3OTcy.X0_o-Q.Ts3aldC0AhotqTqdH_QDEo_aAVg"
-BOT_PREFIX = '/'
+client = commands.Bot(command_prefix=BOT_PREFIX)
+client.remove_command('help')
 
-bot = commands.Bot(command_prefix=BOT_PREFIX)
-bot.remove_command('help')
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        client.load_extension(f'cogs.{filename[:-3]}')
 
 async def status():
     while True:
-        await bot.wait_until_ready()
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("/9help | /9b"))
+        await client.wait_until_ready()
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9help | 9b"))
         await sleep(3600)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("Version 2.0"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Version 2.1"))
         await sleep(500)
-        await bot.change_presence(activity=discord.Streaming(name="SHKW Live!", url="http://www.twitch.tv/shockwavesharma"))
+        await client.change_presence(activity=discord.Streaming(name="SHKW Live!", url="http://www.twitch.tv/shockwavesharma"))
         await sleep(500)
-        await bot.change_presence(activity=discord.Streaming(name="WonUpped Live!", url="http://www.twitch.tv/wonupped"))
+        await client.change_presence(activity=discord.Streaming(name="WonUpped Live!", url="http://www.twitch.tv/wonupped"))
         await sleep(500)
-        await bot.change_presence(activity=discord.Streaming(name="Microninjaguy Live!", url="http://www.twitch.tv/microninjaguy"))
+        await client.change_presence(activity=discord.Streaming(name="Microninjaguy Live!", url="http://www.twitch.tv/microninjaguy"))
         await sleep(500)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("/9clear"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9clear"))
         await sleep(500)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("Gotta Catch 'em All"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Gotta Catch 'em All"))
         await sleep(500)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("Ask me Question"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Ask me Question"))
         await sleep(500)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("Bad Things!!"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Bad Things!!"))
         await sleep(500)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("Bonk!!"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Bonk!!"))
         await sleep(500)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("NineBall, your local questioneer!"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("NineBall, your local questioneer!"))
         await sleep(500)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("/9b"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9b"))
         await sleep(500)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("Raw Spaghetti Laser Beam!"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Raw Spaghetti Laser Beam!"))
         await sleep(500)
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("I Believe In The Sword."))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("I Believe In The Sword."))
         await sleep(500) #Status changer for the bot
 
-@bot.event #CMD Screen when Bot starts
+def ownercheck(ctx):
+    return ctx.message.author.id == 503314109643882529
+
+@client.event #CMD Screen when Bot starts
 async def on_ready():
-    users = len(set(bot.get_all_members()))
+    users = len(set(client.get_all_members()))
     ping = (time.monotonic()) / 10000
     print('-----------------------------------------------------------------------------')
     print(str(datetime.datetime.now().time()) + " - Connecting to Discord API...")
     print(str(datetime.datetime.now().time()) + " - Connected to Discord API.")
     print(str(datetime.datetime.now().time()) + " - Loading stats and posting to DBL...")
     print(str(datetime.datetime.now().time()) + " - Loading complete!")
-    print("Logged in as: " + bot.user.name + "\n")
+    print("Logged in as: " + client.user.name + "\n")
     print("{} users".format(users))
     print('Servers connected to:')
-    for guild in bot.guilds:
+    for guild in client.guilds:
         print(guild.name)
     print('------------------------------------------------------------------------------')
-bot.loop.create_task(status())
+client.loop.create_task(status())
 
-@bot.command(aliases=['9ball', '9Ball', '9b', '9B', 'ball', 'Ball']) #The Main 9Ball command
-async def _9ball(ctx, *, question):
-    responses = ["As I see it, no.",
-                "It is decidedly so.",
-                "Without a doubt.",
-                "Yes - definitely",
-                "You may rely on it.",
-                "Most likely.",
-                "Kinda.",
-                "Yes.",
-                "Signs point to yes.",
-                "Yup.",
-                "Affirmative.",
-                "Don't count on it.",
-                "My reply is no",
-                "My Sources say no.",
-                "very doubtful.",
-                "**Yes.**",
-                "**No.**",
-                "Simp!",
-                "Definitely not!",
-                "Ask 9Ball once more.",
-                "Maybe Not.",
-                "Nie.",
-                "Negative.",
-                "Definitely yes!",
-                "I can see it as true.",
-                "I can see it as false.",
-                "Idk m8... Ask Murphy...",
-                "Oh hecc naw!",
-                "Definitely."]
+@commands.check(ownercheck)
+@client.command(aliases=["refresh"])
+async def reload(ctx, extension):
+    client.unload_extension(f"cogs.{extension}")
+    client.load_extension(f"cogs.{extension}")
+    await ctx.send("9Ball has reloaded the cog!")
 
-    colors = [0x680af5,0x2E10ED,0x8CF9C1,0xF88000,0xFCFF00,0xed129f,0xed3212,0x1ACFE7,0x0FD150,0xFE2D00]
-    time = datetime.datetime.utcnow()
-    embed=discord.Embed(title="The official 9Ball has Spoken.", color=random.choice(colors))
-    embed.set_author(name="Asked by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.add_field(name="Question:", value=question, inline=False)
-    embed.add_field(name="Answer:", value=random.choice(responses), inline=False)
-    embed.set_footer(text=time)
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
-
-@bot.command(aliases=['9help', '9Help']) #The 9Ball help commands...
-async def _9help(ctx):
-    embed=discord.Embed(title="9Ball Help Commands", color=0x680af5)
-    embed.set_author(name="Requested by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.add_field(name="/9ball *Your Question*", value="9Ball answers your desired question.", inline=False)
-    embed.add_field(name="/9clear 5, /c", value="9Ball deletes server messages by a selected number.", inline=False)
-    embed.add_field(name="/cookie @user", value="Gives cookie to the selected user.", inline=False)
-    embed.add_field(name="/bonk @user", value="9Ball bonks the selected user.", inline=False)
-    embed.add_field(name="/hug @user", value="Gives a hug to the selected user.", inline=False)
-    embed.add_field(name="/kiss @user", value="Kisses user (Covid free).", inline=False)
-    embed.add_field(name="/fistbump @user", value="fistbump user.", inline=False)
-    embed.add_field(name="/sex @user", value="Oh yeah bb!!.", inline=False)
-    embed.add_field(name="/finger @user", value="Oh yes!!.", inline=False)
-    embed.add_field(name="/9stats", value="9Ball lists the stats.", inline=False)
-    embed.add_field(name="/9about", value="The about page for 9Ball.", inline=False)
-
-    await ctx.send(embed=embed)
-
-@bot.command(aliases=['18help', '8Help']) #The 9Ball help commands...
-async def _18help(ctx):
-    embed=discord.Embed(title="9Ball 18+ Help Commands", color=0xF50E0A)
-    embed.set_author(name="Requested by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.add_field(name="/sex @user", value="Oh yeah bb!!.", inline=False)
-    embed.add_field(name="/finger @user", value="Oh yes!!.", inline=False)
-    await ctx.send(embed=embed)
-
-@bot.command(aliases=['9about', '9About']) #The about page for 9Ball
-async def _9about(ctx):
-    embed=discord.Embed(title="Developed By K-20", description="Written in Python Rewrite. It's not an 8Ball but, It's a 9Ball!", color=0x680af5)
-    embed.set_author(name="Requested by: " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_thumbnail(url="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/ae/ae834ef83d652c19e5de5ec93a35c887a575517a_full.jpg")
-    embed.add_field(name="Website:", value="https://sites.google.com/view/9-ball-bot/home", inline=False)
-    await ctx.send(embed=embed)
-
-@bot.command(aliases=['9stats', '9stat']) #Devs stats for the current 9Ball
-async def _9stats(ctx):
-    pythonVerison = platform.python_version()
-    serverCount = len(bot.guilds)
-
-    embed=discord.Embed(title="9Ball Stats", color=0x680af5)
-    embed.set_author(name="Rquested By " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.add_field(name="Python Verison:", value=pythonVerison, inline=True)
-    embed.add_field(name="Server Count:", value=serverCount, inline=True)
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
-
-@bot.command(aliases=['delete', 'purge', 'c', 'remove', '9clear']) #Best clear command I've ever done
-async def _9clear(ctx, amount: int):
-    if ctx.message.author.guild_permissions.manage_messages:
-        await ctx.channel.purge(limit=amount + 1)
-        embed = discord.Embed(title=f"`{amount}` messages were removed.", description="", color=0xff0000)
-        await ctx.send(embed=embed, delete_after=3)
-    else:
-        embed = discord.Embed(title="Error: Permission Denied.", description="Your role must need manage messages to be enabled.", color=0xff0000)
-        await ctx.send(embed=embed, delete_after=8)
-
-@bot.command(pass_context=True) #Cookie Command
-async def cookie(ctx, member: discord.Member):
-    embed = discord.Embed(title="This person has gave you a cookie!", description="**{1}** gave a cookie to **{0}**! :cookie:".format(member.name, ctx.message.author.name), color=0x680af5)
-    embed.set_author(name="Cookie sent by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_image(url="https://media1.tenor.com/images/45fe45f75ec523c2abf4e75ca2ac2fe2/tenor.gif?itemid=11797931")
-    embed.set_footer(text="Command: /cookie @user")
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
-
-@bot.command(pass_context=True) #Cookies Command
-async def cookies(ctx, member: discord.Member):
-    embed = discord.Embed(title="This person has gave you a bunch of cookies", description="**{1}** gave cookies to **{0}**! :cookie:".format(member.name, ctx.message.author.name), color=0x680af5)
-    embed.set_author(name="Cookies sent by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_image(url="https://media1.tenor.com/images/30c8ce96272fe73f58841164a179f6d1/tenor.gif?itemid=17729544")
-    embed.set_footer(text="Command: /cookies @user")
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
-
-@bot.command(pass_context=True) #Bonk Command
-async def bonk(ctx, member: discord.Member):
-    """Shoot someone."""
-    embed = discord.Embed(title="**Bonk!**", description="**{1}** Bonked **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
-    embed.set_author(name="Bonked by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_image(url="https://media1.tenor.com/images/0f145914d9e66a19829d7145daf9abcc/tenor.gif?itemid=19401897")
-    embed.set_footer(text="Command: /bonk @user")
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
-
-@bot.command(pass_context=True) #Hug Command
-async def hug(ctx, member: discord.Member):
-    """Hug someone."""
-    embed = discord.Embed(title="Sending...", description="**{1}** hugs **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
-    embed.set_author(name="Hugged by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_image(url="https://media1.tenor.com/images/29a4aef07fde6e590aeaa3381324bbd1/tenor.gif?itemid=18630098")
-    embed.set_footer(text="Command: /hug @user")
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
-
-@bot.command(pass_context=True) #Kiss Command
-async def kiss(ctx, member: discord.Member):
-    embed = discord.Embed(title="*This person gave you a suprise!*", description="**{1}** kissed **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
-    embed.set_author(name="Kissed by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_image(url="https://media1.tenor.com/images/4700f51c48d41104e541459743db42ae/tenor.gif?itemid=17947049")
-    embed.set_footer(text="Command: /kiss @user | (Covid Free)")
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
-
-@bot.command(pass_context=True, aliases=['fb', 'bump']) #Fistbump Command
-async def fistbump(ctx, member: discord.Member):
-    embed = discord.Embed(title="This person gave you a fistbump ;)", description="**{1}** fistbumped **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
-    embed.set_author(name="Fistbumped by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_image(url="https://media2.giphy.com/media/l0HlL6XHioKD5Gsgg/giphy.gif?cid=ecf05e473oo7yozme81o170s0i9tjwxdb7pq69ba46acewt0&rid=giphy.gif")
-    embed.set_footer(text="Command: /fistbump @user | /fb @user")
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
-
-@bot.command(pass_context=True, aliases=['frick', 'fuck']) #Ok Command
-async def sex(ctx, member: discord.Member):
-    embed = discord.Embed(title="This person had sex with you ;)", description="**{1}** fucked **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
-    embed.set_author(name="Fucked by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_image(url="https://media1.tenor.com/images/fa98b23ca1dba1925da62f834f27153f/tenor.gif?itemid=19355212")
-    embed.set_footer(text="Command: /frick @user | /fuck @user")
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
-
-@bot.command(pass_context=True, aliases=['fin', 'finge']) #Ok Command
-async def finger(ctx, member: discord.Member):
-    embed = discord.Embed(title="This person had fingered you ;)", description="**{1}** fingered **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
-    embed.set_author(name="Fingered by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-    embed.set_image(url="https://media1.tenor.com/images/36dff1e9341831727baaac83a394e327/tenor.gif?itemid=19804695")
-    embed.set_footer(text="Command: /finger @user | /fin @user")
-    await ctx.send(embed=embed)
-    await ctx.message.delete()
-
-@bot.command(aliases=['quit', 'stop', 'exit']) #Shutdown command for Nineball
+@commands.check(ownercheck)
+@client.command(aliases=['quit', 'stop', 'exit']) #Shutdown command for Nineball
 async def shutdown(ctx):
     await ctx.send("9Ball is shutting down. Please wait...", delete_after=10)
-    currentDT = self.mySupport.getTime()
-    print(f"[{currentDT}] 9Ball is shutting down...")
+    print("9Ball is shutting down...")
     await logout()
 
-@bot.event #Error ignore for MissingPermissions
+@client.event #Error ignore for MissingPermissions
 async def on_command_error(ctx, error):
     if isinstance(error, MissingPermissions):
-        raise error
+        return
 
-bot.run(TOKEN)
+@client.event #Error ignore for CommandNotFound
+async def on_command_error(ctx, error):
+    if isinstance(error, CommandNotFound):
+        return
+
+client.run(TOKEN)
