@@ -20,11 +20,11 @@ for filename in os.listdir('./cogs'):
 async def status():
     while True:
         await client.wait_until_ready()
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("9help | 9b"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9ship | 9gay"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Version 2.1"))
-        await sleep(500)
-        await client.change_presence(activity=discord.Streaming(name="SHKW Live!", url="http://www.twitch.tv/shockwavesharma"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Version 2.2"))
+        await sleep(3600)
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9help | 9b"))
         await sleep(500)
         await client.change_presence(activity=discord.Streaming(name="WonUpped Live!", url="http://www.twitch.tv/wonupped"))
         await sleep(500)
