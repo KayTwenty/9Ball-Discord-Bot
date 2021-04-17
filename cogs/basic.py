@@ -61,6 +61,8 @@ class basic(commands.Cog):
         embed.add_field(name="9fistbump @user", value="fistbump user.", inline=False)
         embed.add_field(name="9sex @user", value="Oh yeah bb!!.", inline=False)
         embed.add_field(name="9finger @user", value="Oh yes!!.", inline=False)
+        embed.add_field(name="ship @user @user", value="9Ball will ship two selected users.", inline=False)
+        embed.add_field(name="9gay @user", value="9Ball will determine the gay percent on the selected user.", inline=False)
         embed.add_field(name="9stats", value="9Ball lists the stats.", inline=False)
         embed.add_field(name="9about", value="The about page for 9Ball.", inline=False)
         await ctx.send(embed=embed)
