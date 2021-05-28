@@ -2,8 +2,6 @@ import discord
 import datetime
 import time
 import os
-import platform
-import sys
 from discord.ext import commands, tasks
 from discord.ext.commands import MissingPermissions
 from discord.ext.commands import CommandNotFound
@@ -20,34 +18,34 @@ for filename in os.listdir('./cogs'):
 async def status():
     while True:
         await client.wait_until_ready()
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("9ship | 9gay"))
-        await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Version 2.2"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Version 2.3"))
         await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("9help | 9b"))
-        await sleep(500)
-        await client.change_presence(activity=discord.Streaming(name="WonUpped Live!", url="http://www.twitch.tv/wonupped"))
-        await sleep(500)
-        await client.change_presence(activity=discord.Streaming(name="Microninjaguy Live!", url="http://www.twitch.tv/microninjaguy"))
-        await sleep(500)
+        await sleep(3600)
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9gay | 9ship"))
+        await sleep(3600)
+        await client.change_presence(activity=discord.Streaming(name="WonUpped's Channel", url="http://www.twitch.tv/wonupped"))
+        await sleep(3600)
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Staying Alive"))
+        await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("9clear"))
-        await sleep(500)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Gotta Catch 'em All"))
-        await sleep(500)
+        await sleep(3600)
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Rust"))
+        await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("Ask me Question"))
-        await sleep(500)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Bad Things!!"))
-        await sleep(500)
+        await sleep(3600)
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Eleven"))
+        await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("Bonk!!"))
-        await sleep(500)
+        await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("NineBall, your local questioneer!"))
-        await sleep(500)
+        await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("9b"))
-        await sleep(500)
+        await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("Raw Spaghetti Laser Beam!"))
-        await sleep(500)
+        await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("I Believe In The Sword."))
-        await sleep(500) #Status changer for the bot
+        await sleep(3600) #Status changer for the bot
 
 def ownercheck(ctx):
     return ctx.message.author.id == 503314109643882529
