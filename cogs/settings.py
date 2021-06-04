@@ -15,12 +15,13 @@ class settings(commands.Cog):
         embed.set_author(name="Requested by: " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_thumbnail(url="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/ae/ae834ef83d652c19e5de5ec93a35c887a575517a_full.jpg")
         embed.add_field(name="Website:", value="https://sites.google.com/view/9-ball-bot/home", inline=False)
+        embed.add_field(name="Invite Link:", value="https://tinyurl.com/2e8wn5f2", inline=False)
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['Stats', 'stat']) #Devs stats for the current 9Ball
     async def stats(self, ctx):
         pythonVerison = platform.python_version()
-        serverCount = len(client.guilds)
+        serverCount = len(self.client.guilds)
 
         embed=discord.Embed(title="9Ball Stats", color=0x680af5)
         embed.set_author(name="Rquested By " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
