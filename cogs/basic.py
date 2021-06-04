@@ -59,7 +59,7 @@ class basic(commands.Cog):
         embed.add_field(name="9gif", value="9Ball will pull gifs from Giphy", inline=False)
         embed.add_field(name="9about", value="The about page for 9Ball.", inline=False)
         embed.set_footer(text="Commands: 9help2 for page 2")
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
     
     @commands.command(aliases=['funhelp', 'fun']) #Fun 9ball commands
     async def help2(self, ctx):
@@ -75,7 +75,7 @@ class basic(commands.Cog):
         embed.add_field(name="ship @user @user", value="9Ball will ship two selected users.", inline=False)
         embed.add_field(name="9gay @user", value="9Ball will determine the gay percent on the selected user.", inline=False)
         embed.set_footer(text="Commands: 9help for page 1")
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
     
 def setup(client):
     client.add_cog(basic(client))

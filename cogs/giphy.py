@@ -29,7 +29,7 @@ class giphy(commands.Cog):
             emb.set_image(url = f'https://media.giphy.com/media/{giff.id}/giphy.gif')
             emb.set_footer(text="Commands: 9gif | 9gif dog")
 
-            await ctx.channel.send(embed=emb)
+            await ctx.reply(embed=emb)
         except ApiException as e:
             print("Exception when calling DefaultApi->gifs_search_get: %s\n" % e)
 

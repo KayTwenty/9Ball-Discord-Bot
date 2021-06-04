@@ -16,7 +16,7 @@ class settings(commands.Cog):
         embed.set_thumbnail(url="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/ae/ae834ef83d652c19e5de5ec93a35c887a575517a_full.jpg")
         embed.add_field(name="Website:", value="https://sites.google.com/view/9-ball-bot/home", inline=False)
         embed.add_field(name="Invite Link:", value="https://tinyurl.com/2e8wn5f2", inline=False)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
 
     @commands.command(aliases=['Stats', 'stat']) #Devs stats for the current 9Ball
     async def stats(self, ctx):
@@ -27,8 +27,7 @@ class settings(commands.Cog):
         embed.set_author(name="Rquested By " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.add_field(name="Python Verison:", value=pythonVerison, inline=True)
         embed.add_field(name="Server Count:", value=serverCount, inline=True)
-        await ctx.send(embed=embed)
-        await ctx.message.delete()
+        await ctx.reply(embed=embed)
 
     @commands.command(aliases=['delete', 'purge', 'c', 'remove']) #Best clear command I've ever done
     async def clear(self, ctx, amount: int):
