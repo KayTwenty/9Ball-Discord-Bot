@@ -65,7 +65,7 @@ class fun(commands.Cog):
         await ctx.send(embed=embed)
         await ctx.message.delete()
 
-    @commands.command(pass_context=True, aliases=['frick', 'fuck']) #Ok Command
+    @commands.command(pass_context=True, aliases=['frick', 'fuck']) #Frick Command
     async def sex(self, ctx, member: discord.Member):
         embed = discord.Embed(title="This person had sex with you ;)", description="**{1}** fucked **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
         embed.set_author(name="Fucked by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -74,11 +74,11 @@ class fun(commands.Cog):
         await ctx.send(embed=embed)
         await ctx.message.delete()
 
-    @commands.command(pass_context=True, aliases=['fin', 'finge']) #Ok Command
-    async def finger(self, ctx, member: discord.Member):
-        embed = discord.Embed(title="This person had fingered you ;)", description="**{1}** fingered **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
-        embed.set_author(name="Fingered by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_image(url="https://media1.tenor.com/images/36dff1e9341831727baaac83a394e327/tenor.gif?itemid=19804695")
+    @commands.command(pass_context=True, aliases=['do', 'donu']) #Donut Command
+    async def donut(self, ctx, member: discord.Member):
+        embed = discord.Embed(title="This person gave you donut!", description="**{1}** gave donut to **{0}** :doughnut:".format(member.name, ctx.message.author.name), color=0x680af5)
+        embed.set_author(name="Donut sent by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
+        embed.set_image(url="https://media1.tenor.com/images/29a1be900e68a176097ff05eb51514b5/tenor.gif?itemid=8158743")
         embed.set_footer(text="Command: 9finger @user | 9fin @user")
         await ctx.send(embed=embed)
         await ctx.message.delete()
