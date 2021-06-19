@@ -1,9 +1,5 @@
-import discord
-import os
-import sys
-import datetime
-from datetime import datetime
-from discord.ext import commands
+'  Importing from config.py  '
+from config import *
 
 class fun(commands.Cog):
     def __init__(self, client):

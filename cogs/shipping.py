@@ -1,6 +1,5 @@
-import discord, asyncio, random, json
-from discord.ext import commands
-from discord.ext.commands import clean_content
+'  Importing from config.py  '
+from config import *
 
 class shipping(commands.Cog):
     def __init__(self, bot):

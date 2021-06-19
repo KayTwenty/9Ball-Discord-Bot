@@ -1,8 +1,5 @@
-import discord
-import random
-import asyncio
-from discord.ext import commands
-from random import choice
+'  Importing from config.py  '
+from config import *
 
 class basic(commands.Cog):
     def __init__(self, client):
@@ -58,6 +55,7 @@ class basic(commands.Cog):
         embed.add_field(name="9stats", value="9Ball lists the stats.", inline=False)
         embed.add_field(name="9gif", value="9Ball will pull gifs from Giphy", inline=False)
         embed.add_field(name="9about", value="The about page for 9Ball.", inline=False)
+        embed.add_field(name="9blacklist *UserID*", value="Blacklists any user which is not in server using user's ID", inline=False)
         embed.set_footer(text="Commands: 9help2 for page 2")
         await ctx.reply(embed=embed)
     
@@ -77,5 +75,31 @@ class basic(commands.Cog):
         embed.set_footer(text="Commands: 9help for page 1")
         await ctx.reply(embed=embed)
     
+        @commands.command(aliases=["delinvites"])
+        async def del_invites(self, ctx):
+            await ctx.send(f"Delete every invite in `{ctx.guild.name}`? [y/n]")
+
+            def check_data(message):
+                return message.author == ctx.message.author
+
+        while True:
+            try:
+                msg = await self.bot.wait_for('message', check=check_data, timeout=int(timeout))
+                if msg.content == "y":
+                    await ctx.send(waitmsg)
+                    for invite in await ctx.guild.invites():
+                        try:
+                            await invite.delete()
+                        except Exception:
+                            pass
+                    await ctx.send(donemsg)
+                    return
+                if msg.content == "n":
+                    await ctx.send(no_msg)
+                    return
+            except asyncio.TimeoutError:
+                await ctx.send(timeout_msg)
+                return
+
 def setup(client):
     client.add_cog(basic(client))

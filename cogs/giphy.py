@@ -1,10 +1,5 @@
-import discord
-import asyncio
-import random
-import giphy_client
-from giphy_client.rest import ApiException 
-from discord.ext import commands
-from random import choice
+'  Importing from config.py  '
+from config import *
 
 class giphy(commands.Cog):
     def __init__(self, client):

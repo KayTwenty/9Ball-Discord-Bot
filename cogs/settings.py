@@ -1,9 +1,5 @@
-import discord
-import os
-import platform
-import datetime
-from datetime import datetime
-from discord.ext import commands
+'  Importing from config.py  '
+from config import *
 
 class settings(commands.Cog):
     def __init__(self, client):
@@ -28,16 +24,6 @@ class settings(commands.Cog):
         embed.add_field(name="Python Verison:", value=pythonVerison, inline=True)
         embed.add_field(name="Server Count:", value=serverCount, inline=True)
         await ctx.reply(embed=embed)
-
-    @commands.command(aliases=['delete', 'purge', 'c', 'remove']) #Best clear command I've ever done
-    async def clear(self, ctx, amount: int):
-        if ctx.message.author.guild_permissions.manage_messages:
-            await ctx.channel.purge(limit=amount + 1)
-            embed = discord.Embed(title=f"`{amount}` messages were removed.", description="", color=0xff0000)
-            await ctx.send(embed=embed, delete_after=3)
-        else:
-            embed = discord.Embed(title="Error: Permission Denied.", description="Your role must need manage messages to be enabled.", color=0xff0000)
-            await ctx.send(embed=embed, delete_after=8)
 
 def setup(client):
     client.add_cog(settings(client))
