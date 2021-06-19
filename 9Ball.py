@@ -1,11 +1,4 @@
-import discord
-import datetime
-import time
-import os
-from discord.ext import commands, tasks
-from discord.ext.commands import MissingPermissions
-from discord.ext.commands import CommandNotFound
-from asyncio import sleep
+'  Importing from config.py  '
 from config import *
 
 client = commands.Bot(command_prefix=BOT_PREFIX)
@@ -18,38 +11,39 @@ for filename in os.listdir('./cogs'):
 async def status():
     while True:
         await client.wait_until_ready()
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Happy Pride Month!!"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Happy Pride Month!!"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Version 2.4"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Version 2.5"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("9help | 9b"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("9help | 9b"))
         await sleep(3600)
         await client.change_presence(activity=discord.Streaming(name="Smort Nerd", url="https://www.twitch.tv/sodapoppin"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("9gif"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("9gif"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("9clear"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("9clear"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Rust"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Rust"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Ask me Question"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Ask me Question"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Eleven"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Eleven"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Bonk!!"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Bonk!!"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("NineBall, your local questioneer!"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("NineBall, your local questioneer!"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("9b"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("9b"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Raw Spaghetti Laser Beam!"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Raw Spaghetti Laser Beam!"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Almost Summer"))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Summer Time"))
         await sleep(3600) #Status changer for the bot
 
 def ownercheck(ctx):
     return ctx.message.author.id == 503314109643882529
 
+'  The start screen  '
 @client.event #CMD Screen when Bot starts
 async def on_ready():
     users = len(set(client.get_all_members()))
@@ -67,6 +61,7 @@ async def on_ready():
     print('------------------------------------------------------------------------------')
 client.loop.create_task(status())
 
+'  The Reload command  '
 @commands.check(ownercheck)
 @client.command(aliases=["refresh"])
 async def reload(ctx, extension):
@@ -74,14 +69,17 @@ async def reload(ctx, extension):
     client.load_extension(f"cogs.{extension}")
     await ctx.send("9Ball has reloaded the cog!")
 
+'  Shit Errorhandling  '
 @client.event #Error ignore for MissingPermissions
 async def on_command_error(ctx, error):
     if isinstance(error, MissingPermissions):
         return
 
-@client.event #Error ignore for CommandNotFound
+'  The Errorhandling  '
+@client.event
 async def on_command_error(ctx, error):
-    if isinstance(error, CommandNotFound):
-        return
+    if isinstance(error, commands.CommandError):
+        await ctx.reply(f">>> **I just found an error!**\n{error}")  # Errormessage
+
 
 client.run(TOKEN)
