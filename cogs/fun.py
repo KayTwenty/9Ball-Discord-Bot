@@ -25,17 +25,15 @@ class fun(commands.Cog):
 
     @commands.command(pass_context=True) #Bonk Command
     async def bonk(self, ctx, member: discord.Member):
-        """Shoot someone."""
         embed = discord.Embed(title="**Bonk!**", description="**{1}** Bonked **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
         embed.set_author(name="Bonked by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
-        embed.set_image(url="https://media1.tenor.com/images/0f145914d9e66a19829d7145daf9abcc/tenor.gif?itemid=19401897")
+        embed.set_image(url=random.choice(bonkurl))
         embed.set_footer(text="Command: 9bonk @user")
         await ctx.send(embed=embed)
         await ctx.message.delete()
 
     @commands.command(pass_context=True) #Hug Command
     async def hug(self, ctx, member: discord.Member):
-        """Hug someone."""
         embed = discord.Embed(title="Sending...", description="**{1}** hugs **{0}**!".format(member.name, ctx.message.author.name), color=0x680af5)
         embed.set_author(name="Hugged by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.set_image(url="https://media1.tenor.com/images/29a4aef07fde6e590aeaa3381324bbd1/tenor.gif?itemid=18630098")
