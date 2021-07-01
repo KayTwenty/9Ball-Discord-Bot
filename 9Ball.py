@@ -11,33 +11,33 @@ for filename in os.listdir('./cogs'):
 async def status():
     while True:
         await client.wait_until_ready()
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Happy Pride Month!!"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Happy July!!"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Version 2.5"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Version 2.5"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("9help | 9b"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9help | 9b"))
         await sleep(3600)
         await client.change_presence(activity=discord.Streaming(name="Smort Nerd", url="https://www.twitch.tv/sodapoppin"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("9gif"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9gif"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("9clear"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9clear"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Rust"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("VSCode"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Ask me Question"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Ask me Question"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Eleven"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9meme"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Bonk!!"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("World of Time"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("NineBall, your local questioneer!"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("NineBall, your local questioneer!"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("9b"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("9b"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Raw Spaghetti Laser Beam!"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Raw Spaghetti Laser Beam!"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game("Summer Time"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Summer Time"))
         await sleep(3600) #Status changer for the bot
 
 def ownercheck(ctx):
@@ -69,7 +69,7 @@ async def reload(ctx, extension):
     client.load_extension(f"cogs.{extension}")
     await ctx.send("9Ball has reloaded the cog!")
 
-'  Shit Errorhandling  '
+' The Errorhandling  '
 @client.event #Error ignore for MissingPermissions
 async def on_command_error(ctx, error):
     if isinstance(error, MissingPermissions):
@@ -81,5 +81,10 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandError):
         await ctx.reply(f">>> **I just found an error!**\n{error}")  # Errormessage
 
+@client.event
+async def on_message(message):
+    if client.user.mentioned_in(message):
+        embed=discord.Embed(title="Hi, I'm 9Ball", description="My default prefix is `9`. Hope this helps!", color=0x176cd5)
+        await message.reply(embed=embed)
 
 client.run(TOKEN)

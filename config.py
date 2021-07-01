@@ -8,6 +8,10 @@ import giphy_client
 import platform
 import json
 import time
+import aiohttp
+import requests
+import praw
+import asyncpraw
 from discord.ext import commands, tasks
 from random import choice
 from giphy_client.rest import ApiException
@@ -19,4 +23,6 @@ from asyncio import sleep
 ########################################################################################################################
 BOT_PREFIX = '9'
 TOKEN = "NzUwNzg5MjQ3ODkxNTM3OTcy.X0_o-Q.Ts3aldC0AhotqTqdH_QDEo_aAVg"
+
+colors = [0x680af5,0x2E10ED,0x8CF9C1,0xF88000,0xFCFF00,0xed129f,0xed3212,0x1ACFE7,0x0FD150,0xFE2D00]
 ########################################################################################################################
