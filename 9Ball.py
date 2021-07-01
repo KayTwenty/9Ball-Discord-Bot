@@ -81,10 +81,5 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandError):
         await ctx.reply(f">>> **I just found an error!**\n{error}")  # Errormessage
 
-@client.event
-async def on_message(message):
-    if client.user.mentioned_in(message):
-        embed=discord.Embed(title="Hi, I'm 9Ball", description="My default prefix is `9`. Hope this helps!", color=0x176cd5)
-        await message.reply(embed=embed)
 
 client.run(TOKEN)
