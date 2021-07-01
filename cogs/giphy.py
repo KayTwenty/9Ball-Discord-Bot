@@ -14,10 +14,9 @@ class giphy(commands.Cog):
         try: 
         # Search Endpoint
         
-            api_response = api_instance.gifs_search_get(api_key, q, limit=5, rating='g')
+            api_response = api_instance.gifs_search_get(api_key, q, limit=40, rating='g')
             lst = list(api_response.data)
             giff = random.choice(lst)
-            colors = [0x680af5,0x2E10ED,0x8CF9C1,0xF88000,0xFCFF00,0xed129f,0xed3212,0x1ACFE7,0x0FD150,0xFE2D00]
 
             emb = discord.Embed(title=q, description="Using Giphy API", color=random.choice(colors))
             emb.set_author(name="Command used by: " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -27,7 +26,6 @@ class giphy(commands.Cog):
             await ctx.reply(embed=emb)
         except ApiException as e:
             print("Exception when calling DefaultApi->gifs_search_get: %s\n" % e)
-
 
 def setup(client):
     client.add_cog(giphy(client))

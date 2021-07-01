@@ -25,5 +25,6 @@ class settings(commands.Cog):
         embed.add_field(name="Server Count:", value=serverCount, inline=True)
         await ctx.reply(embed=embed)
 
+
 def setup(client):
     client.add_cog(settings(client))

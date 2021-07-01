@@ -15,8 +15,7 @@ class shipping(commands.Cog):
                                        "Wearing socks", 
                                        '"Only sometimes"', 
                                        "Straight-ish", 
-                                       "No homo bro", 
-                                       "Girl-kisser", 
+                                       "No homo bro",  
                                        "Hella straight"])
             gayColor = 0xFFC0CB
         elif 33 < gayness < 66:
@@ -32,7 +31,7 @@ class shipping(commands.Cog):
             gayStatus = random.choice(["LOL YOU GAY XDDD FUNNY", 
                                        "HOMO ALERT", 
                                        "MY GAY-SENSOR IS OFF THE CHARTS", 
-                                       "STINKY GAY", 
+                                       "GAY", 
                                        "BIG GEAY", 
                                        "THE SOCKS ARE OFF", 
                                        "HELLA GAY"])

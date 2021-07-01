@@ -37,7 +37,6 @@ class basic(commands.Cog):
                     "Oh hecc naw!",
                     "Definitely."]
 
-        colors = [0x680af5,0x2E10ED,0x8CF9C1,0xF88000,0xFCFF00,0xed129f,0xed3212,0x1ACFE7,0x0FD150,0xFE2D00]
         embed=discord.Embed(title="The official 9Ball has Spoken.", color=random.choice(colors))
         embed.set_author(name="Asked by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
         embed.add_field(name="Question:", value=question, inline=False)
@@ -75,31 +74,5 @@ class basic(commands.Cog):
         embed.set_footer(text="Commands: 9help for page 1")
         await ctx.reply(embed=embed)
     
-        @commands.command(aliases=["delinvites"])
-        async def del_invites(self, ctx):
-            await ctx.send(f"Delete every invite in `{ctx.guild.name}`? [y/n]")
-
-            def check_data(message):
-                return message.author == ctx.message.author
-
-        while True:
-            try:
-                msg = await self.bot.wait_for('message', check=check_data, timeout=int(timeout))
-                if msg.content == "y":
-                    await ctx.send(waitmsg)
-                    for invite in await ctx.guild.invites():
-                        try:
-                            await invite.delete()
-                        except Exception:
-                            pass
-                    await ctx.send(donemsg)
-                    return
-                if msg.content == "n":
-                    await ctx.send(no_msg)
-                    return
-            except asyncio.TimeoutError:
-                await ctx.send(timeout_msg)
-                return
-
 def setup(client):
     client.add_cog(basic(client))
