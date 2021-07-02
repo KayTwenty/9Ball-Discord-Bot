@@ -1,5 +1,5 @@
 '  Importing from config.py  '
-from config import *
+from data.config import *
 
 class mod(commands.Cog):
     def __init__(self, client):

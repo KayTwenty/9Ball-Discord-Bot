@@ -1,5 +1,5 @@
 '  Importing from config.py  '
-from config import *
+from data.config import *
 
 client = commands.Bot(command_prefix=BOT_PREFIX)
 client.remove_command('help')
@@ -8,12 +8,12 @@ for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
 
-async def status():
+async def status(): #Status changer for the bot
     while True:
         await client.wait_until_ready()
         await client.change_presence(status=discord.Status.online, activity=discord.Game("Happy July!!"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("Version 2.5"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("Version 2.6"))
         await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("9help | 9b"))
         await sleep(3600)
@@ -38,10 +38,7 @@ async def status():
         await client.change_presence(status=discord.Status.online, activity=discord.Game("Raw Spaghetti Laser Beam!"))
         await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("Summer Time"))
-        await sleep(3600) #Status changer for the bot
-
-def ownercheck(ctx):
-    return ctx.message.author.id == 503314109643882529
+        await sleep(3600)
 
 '  The start screen  '
 @client.event #CMD Screen when Bot starts
