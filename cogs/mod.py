@@ -12,7 +12,7 @@ class mod(commands.Cog):
             embed = discord.Embed(title=f"`{amount}` messages were removed.", description="", color=0xff0000)
             await ctx.send(embed=embed, delete_after=3)
         else:
-            embed = discord.Embed(title="Error: Permission Denied.", description="Your role must need manage messages to be enabled.", color=0xff0000)
+            embed = discord.Embed(title="Error:", description="Role must need manage messages to be enabled.", color=0xff0000)
             await ctx.send(embed=embed, delete_after=8)
     
     @commands.command(aliases=['bl'], pass_context=True)     

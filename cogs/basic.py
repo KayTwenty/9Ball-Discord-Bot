@@ -26,7 +26,7 @@ class basic(commands.Cog):
                     "**No.**",
                     "Simp!",
                     "Definitely not!",
-                    "Ask 9Ball once more.",
+                    "Ask an admin",
                     "Maybe Not.",
                     "Nie.",
                     "Negative.",
@@ -55,6 +55,9 @@ class basic(commands.Cog):
         embed.add_field(name="9gif", value="9Ball will pull gifs from Giphy", inline=False)
         embed.add_field(name="9about", value="The about page for 9Ball.", inline=False)
         embed.add_field(name="9blacklist *UserID*", value="Blacklists any user which is not in server using user's ID", inline=False)
+        embed.add_field(name="9join", value="9Ball will join the voice channel", inline=False)
+        embed.add_field(name="9dc", value="9Ball will leave the voice channel", inline=False)
+        embed.add_field(name="9repeat *text*", value="9Ball will repeat whatever you've said", inline=False)
         embed.set_footer(text="Commands: 9help2 for page 2")
         await ctx.reply(embed=embed)
     
