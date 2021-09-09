@@ -31,7 +31,7 @@ async def status(): #Status changer for the bot
         await sleep(3600)
         await client.change_presence(activity=discord.Streaming(name="Nerd", url="https://www.twitch.tv/sodapoppin"))
         await sleep(3600)
-        await client.change_presence(status=discord.Status.online, activity=discord.Game("9gif"))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game("..."))
         await sleep(3600)
         await client.change_presence(status=discord.Status.online, activity=discord.Game("9clear"))
         await sleep(3600)
