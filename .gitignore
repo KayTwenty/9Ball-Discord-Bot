@@ -1,6 +1,4 @@
-/__pycache__/
-/cogs/__pycache__/
-/data/__pycache__/
+__pycache__
 /data/config.json
-/text.mp3/
-/.vscode/
+text.mp3
+/.vscode
