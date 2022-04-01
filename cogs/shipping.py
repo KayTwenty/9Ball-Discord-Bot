@@ -1,5 +1,11 @@
-'  Importing from config.py  '
-from data.config import *
+# shipping.py
+# This is a cog
+
+import discord
+import random
+
+from discord.ext import commands
+
 
 class shipping(commands.Cog):
     def __init__(self, bot):
@@ -19,17 +25,17 @@ class shipping(commands.Cog):
                                        "Hella straight"])
             gayColor = 0xFFC0CB
         elif 33 < gayness < 66:
-            gayStatus = random.choice(["Possible homo", 
+            gayStatus = random.choice(["Possible gay", 
                                        "My gay-sensor is picking something up", 
                                        "I can't tell if the socks are on or off", 
                                        "Gay-ish", 
-                                       "Looking a bit homo", 
+                                       "Looking a bit gay", 
                                        "lol half  g a y", 
                                        "safely in between for now"])
             gayColor = 0xFF69B4
         else:
-            gayStatus = random.choice(["LOL YOU GAY XDDD FUNNY", 
-                                       "HOMO ALERT", 
+            gayStatus = random.choice(["Mostly Gay", 
+                                       "GAY ALERT", 
                                        "MY GAY-SENSOR IS OFF THE CHARTS", 
                                        "GAY", 
                                        "BIG GEAY", 

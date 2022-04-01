@@ -1,9 +1,15 @@
-from data.config import *
+# info.py 
+# This is a cog
 
-class info(commands.Cog)
+import discord
+import platform
+
+from discord.ext import commands
+
+class info(commands.Cog):
     def __init__(self, client):
         self.client = client
-`   
+   
     @commands.command(aliases=['Help', 'h']) #The 9Ball help commands...
     async def help(self, ctx):
         embed=discord.Embed(title="9Ball Main Help Commands", color=0x680af5)

@@ -1,6 +1,11 @@
-'  Importing from config.py  '
-from data.config import *
-from data.reference import *
+# fun.py 
+# This is a cog
+
+import discord
+import random
+ 
+from discord.ext import commands
+from utils.reference import *
 
 class fun(commands.Cog):
     def __init__(self, client):

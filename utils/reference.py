@@ -1,6 +1,5 @@
-'  Importing from config.py  '
-from data.config import *
-
+# reference.py
+# This script is for image references
 
 cookieurl = ["https://media1.tenor.com/images/45fe45f75ec523c2abf4e75ca2ac2fe2/tenor.gif?itemid=11797931",
             "https://media1.tenor.com/images/de6a49b999216fbda779cd27a24919c3/tenor.gif?itemid=19073253"]

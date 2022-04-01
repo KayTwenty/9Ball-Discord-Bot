@@ -1,5 +1,13 @@
-'  Importing from config.py  '
-from data.config import *
+# reddit.py
+# This is a cog
+
+import discord 
+import random
+import asyncpraw
+
+from discord.ext import commands
+from utils.colors import *
+
 
 class reddit(commands.Cog):
     def __init__(self, client):

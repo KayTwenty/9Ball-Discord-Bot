@@ -1,6 +1,14 @@
-'  Importing from config.py  '
-from data.config import *
+# Main.py | 9Ball.py 
+import discord
+import os
+import json
+import datetime
+import time
 
+from discord.ext import commands
+from asyncio import sleep
+from discord.ext.commands import MissingPermissions
+from discord.ext.commands import CommandNotFound
 
 if os.path.exists(os.getcwd() + "/data/config.json"):
     with open("./data/config.json") as f:
@@ -70,13 +78,6 @@ async def on_ready():
     print('------------------------------------------------------------------------------')
 client.loop.create_task(status())
 
-'  The Reload command  '
-@commands.check(ownercheck)
-@client.command(aliases=["refresh"])
-async def reload(ctx, extension):
-    client.unload_extension(f"cogs.{extension}")
-    client.load_extension(f"cogs.{extension}")
-    await ctx.send("9Ball has reloaded the cog!")
 
 ' The Errorhandling  '
 @client.event #Error ignore for MissingPermissions
