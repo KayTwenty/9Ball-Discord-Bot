@@ -51,7 +51,7 @@ source venv/bin/activate #activate it
 nano config.json #After filling it out. Save and exit with ctrl+x
 ```
 
-* Once configured, you can run the bot again using:`python3 main.py`
+* Once configured, you can run the bot again using: `python3 main.py`
 - Congrats you have the bot running 🎉
 
 ### Pm2 Setup
