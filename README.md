@@ -3,7 +3,7 @@
     <img src="9ball.png" alt="Logo" width="80" height="80">
   </a>
   
-  <h3 align="center">JesterBot</h3>
+  <h3 align="center">9Ball</h3>
 
   <p align="center">
     A powerful eight ball and multipurpose discord bot!
