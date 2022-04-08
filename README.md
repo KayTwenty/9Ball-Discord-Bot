@@ -1,2 +1,17 @@
-# 9Ball-Discord-Bot
-This is my own Discord Eightball bot called 9Ball. It is a multipurpose bot for fun and games. It is out of date and not maintained anymore
+<p align="center">
+  <a href="https://sites.google.com/view/jesterbot">
+    <img src="9ball.png" alt="Logo" width="80" height="80">
+  </a>
+  
+  <h3 align="center">JesterBot</h3>
+
+  <p align="center">
+    A powerful eight ball and multipurpose discord bot!
+    <br />
+    <a href="">Explore Website</a>
+    ·
+    <a href="">Invite JesterBot</a>
+  </p>
+</p>
+
+And yet again I haven't finished the rest for the markdown, this project is still maintained
