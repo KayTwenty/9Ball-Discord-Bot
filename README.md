@@ -44,14 +44,6 @@ source venv/bin/activate #activate it
 * After that you are set to now install the bot's requirements\
 `pip` OR `pip3 install -r requirements.txt`
 - Now once installed, you may start the bot using: `python3 main.py`
-
-* Once started It will generated a `config.json` file in your main directory.
-- Now edit your `config.json` file
-```shell
-nano config.json #After filling it out. Save and exit with ctrl+x
-```
-
-* Once configured, you can run the bot again using: `python3 main.py`
 - Congrats you have the bot running 🎉
 
 ### Pm2 Setup
