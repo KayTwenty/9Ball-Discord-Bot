@@ -10,7 +10,7 @@
     <br />
     <a href="">Explore Website</a>
     ·
-    <a href="">Invite JesterBot</a>
+    <a href="">Invite 9Ball</a>
   </p>
 </p>
 
