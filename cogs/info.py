@@ -7,7 +7,7 @@ class info(commands.Cog):
     def __init__(self, client):
         self.client = client
    
-    @commands.command(aliases=['Help', 'h']) #The 9Ball help commands...
+    @commands.command() #The 9Ball help commands...
     async def help(self, ctx):
         embed=discord.Embed(title="9Ball Main Help Commands", color=0x680af5)
         embed.set_author(name="Requested by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -22,7 +22,7 @@ class info(commands.Cog):
         embed.set_footer(text="Commands: 9help2 for page 2")
         await ctx.reply(embed=embed)
 
-    @commands.command(aliases=['funhelp', 'fun']) #Fun 9ball commands
+    @commands.command() #Fun 9ball commands
     async def help2(self, ctx):
         embed=discord.Embed(title="9Ball Fun Help Commands", color=0x680af5)
         embed.set_author(name="Requested by " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -38,7 +38,7 @@ class info(commands.Cog):
         embed.set_footer(text="Commands: 9help for page 1")
         await ctx.reply(embed=embed)
 
-    @commands.command(aliases=['About', 'creator']) #The about page for 9Ball
+    @commands.command() #The about page for 9Ball
     async def about(self, ctx):
         embed=discord.Embed(title="Developed By K-20", description="Written in Python Rewrite. It's not an 8Ball but, It's a 9Ball!", color=0x680af5)
         embed.set_author(name="Requested by: " + str(ctx.message.author), icon_url=ctx.message.author.avatar_url)
@@ -47,7 +47,7 @@ class info(commands.Cog):
         embed.add_field(name="Invite Link:", value="https://tinyurl.com/2e8wn5f2", inline=False)
         await ctx.reply(embed=embed)
 
-    @commands.command(aliases=['Stats', 'stat']) #Devs stats for the current 9Ball
+    @commands.command() #Devs stats for the current 9Ball
     async def stats(self, ctx):
         pythonVerison = platform.python_version()
         serverCount = len(self.client.guilds)

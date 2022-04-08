@@ -1,23 +1,19 @@
 import discord
 import os
-import json
 
 from discord.ext import commands
-from asyncio import sleep
 from discord.ext.commands import MissingPermissions
+from utils.constants import BOT_TOKEN, BOT_PREFIX
 
-if os.path.exists(os.getcwd() + "/config.json"):
-    with open("./config.json") as f:
-        configData = json.load(f)
-else:
-    configTemplate = {"Token": "", "Prefix": "9"}
-    with open(os.getcwd() + "/config.json", "w+") as f:
-        json.dump(configTemplate, f)
 
-TOKEN = configData["Token"]
-BOT_PREFIX = configData["Prefix"]
-
-client = commands.Bot(command_prefix=BOT_PREFIX)
+client = commands.Bot(
+    command_prefix=BOT_PREFIX,
+    intents=discord.Intents.all(),
+    allowed_mentions=discord.AllowedMentions(
+        everyone=False, users=True, roles=False, replied_user=True
+    ),
+    case_insensitive=True
+)
 client.remove_command("help")
 
 for filename in os.listdir("./cogs"):
@@ -28,6 +24,7 @@ for filename in os.listdir("./cogs"):
 @client.event
 async def on_ready():
     print("Logged in as: " + client.user.name + "\n")
+    
     print("Servers connected to:")
     for guild in client.guilds:
         print(guild.name)
@@ -48,6 +45,6 @@ async def on_command_error(ctx, error):
 
 
 try:
-    client.run(TOKEN)
+    client.run(BOT_TOKEN)
 except Exception as e:
     print(f"Error when logging in: {e}")

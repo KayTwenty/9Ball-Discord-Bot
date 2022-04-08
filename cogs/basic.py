@@ -4,11 +4,11 @@ import random
 from discord.ext import commands
 from utils.colors import *
 
-class ball(commands.Cog):
+class basic(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(aliases=['Ball', 'b', 'B']) #The Main 9Ball command
+    @commands.command() #The Main 9Ball command
     async def ball(self, ctx, *, question):
         responses = ["As I see it, no.",
                     "It is decidedly so.",
@@ -49,4 +49,4 @@ class ball(commands.Cog):
         await ctx.message.delete()
 
 def setup(client):
-    client.add_cog(ball(client))
+    client.add_cog(basic(client))

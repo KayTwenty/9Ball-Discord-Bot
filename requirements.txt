@@ -1,3 +1,4 @@
-git+https://github.com/Rapptz/discord.py
-git+https://github.com/Giphy/giphy-python-client
+discord.py==1.7.3
 asyncpraw
+discord-together==1.2.4
+python-dotenv
