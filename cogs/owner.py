@@ -1,6 +1,3 @@
-# owner.py
-# This is a cog
-
 from discord.ext import commands
 from utils.owners import *
 

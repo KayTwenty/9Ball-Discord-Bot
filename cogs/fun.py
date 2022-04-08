@@ -1,6 +1,3 @@
-# fun.py 
-# This is a cog
-
 import discord
 import random
  

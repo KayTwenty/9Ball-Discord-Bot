@@ -1,10 +1,6 @@
-# mod.py
-# This is a cog
-
 import discord
 
 from discord.ext import commands
-
 
 class mod(commands.Cog):
     def __init__(self, client):

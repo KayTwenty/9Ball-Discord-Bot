@@ -1,4 +1,3 @@
-# Main.py | 9Ball.py 
 import discord
 import os
 import json
@@ -10,12 +9,12 @@ from asyncio import sleep
 from discord.ext.commands import MissingPermissions
 from discord.ext.commands import CommandNotFound
 
-if os.path.exists(os.getcwd() + "/data/config.json"):
-    with open("./data/config.json") as f:
+if os.path.exists(os.getcwd() + "/config.json"):
+    with open("./config.json") as f:
         configData = json.load(f)
 else:
     configTemplate = {"Token": "", "Prefix": "9"}
-    with open(os.getcwd() + "/data/config.json", "w+") as f:
+    with open(os.getcwd() + "/config.json", "w+") as f:
         json.dump(configTemplate, f)
 
 TOKEN = configData["Token"]

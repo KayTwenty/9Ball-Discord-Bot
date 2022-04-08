@@ -1,4 +1,3 @@
 git+https://github.com/Rapptz/discord.py
 git+https://github.com/Giphy/giphy-python-client
 asyncpraw
-gTTS

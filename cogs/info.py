@@ -1,6 +1,3 @@
-# info.py 
-# This is a cog
-
 import discord
 import platform
 
