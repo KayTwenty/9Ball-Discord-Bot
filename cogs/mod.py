@@ -7,9 +7,7 @@ class mod(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(
-        aliases=["delete", "purge", "c", "remove"]
-    )
+    @commands.command(aliases=["delete", "purge", "c", "remove"])
     async def clear(self, ctx, amount: int):
         if ctx.message.author.guild_permissions.manage_messages:
             await ctx.channel.purge(limit=amount + 1)

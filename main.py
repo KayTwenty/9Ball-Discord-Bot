@@ -24,7 +24,6 @@ for filename in os.listdir("./cogs"):
 @client.event
 async def on_ready():
     print("Logged in as: " + client.user.name + "\n")
-    
     print("Servers connected to:")
     for guild in client.guilds:
         print(guild.name)
